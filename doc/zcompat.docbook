@@ -1,0 +1,26 @@
+<?xml version='1.0'?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+                  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+
+<!ENTITY docinfo SYSTEM "docinfo.docbook">
+<!ENTITY % entities SYSTEM "entities.sgml">
+%entities;
+]>
+<!-- 							-->
+<!--   File:	zcompat.docbook				-->
+<!--							-->
+<!--   Id:	$Id$					-->
+<!--							-->
+<!--   Purpose: zcompat Documentation Main File		-->
+<!--							-->
+<book>
+    <bookinfo>
+	&docinfo;
+    </bookinfo>
+    
+    &zmm-reference;
+    &zmod-reference;
+    &zthread-reference;
+
+    <index/>
+</book>

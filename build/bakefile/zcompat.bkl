@@ -1,0 +1,100 @@
+<?xml version="1.0" ?>
+<makefile>
+    <using module="datafiles"/>
+    <include file="common.bkl"/>
+    <set var="VERSION">0.1.23</set>
+    <set var="ZCOMPAT_SOURCES">
+	src/ansi.c
+	src/binio.c
+	src/bsdsock.c
+	src/chain.c
+	src/chconv.c
+	src/dir.c
+	src/dstream.c
+	src/error.c
+	src/filter.c
+	src/getcon.c
+	src/mdmfdbg.c
+	src/membuf.c
+	src/mfifo.c
+	src/netio.c
+	src/open.c
+	src/pipe.c
+	src/posix.c
+	src/sbtree.c
+	src/sbuffer.c
+	src/scipher.c
+	src/slist.c
+	src/smap.c
+	src/smtp.c
+	src/sstack.c
+	src/sstr.c
+	src/stdio.c
+	src/str.c
+	src/textio.c
+	src/upipe.c
+	src/utils.c
+	src/vform.c
+	src/werror.c
+	src/wgetcon.c
+	src/win32f.c
+	src/wpipe.c
+	src/wstdio.c
+	src/wutil.c
+	src/zcompat.c
+	src/zmm.c
+	src/zmmchunk.c
+	src/zmminc.c
+	src/zmod.c
+	src/zopen.c
+	src/zopt.c
+	src/zpio.c
+	src/zpio_m.c
+	src/zprintf.c
+	src/zscanf.c
+	src/zthread.c
+	src/ztools_i.c
+    </set>
+    <dll id="zcompat"  template="compile">
+	<dllname>zcompat</dllname>
+	<so_version>$(VERSION)</so_version>
+	<libname>zcompat</libname>
+	<sources>
+	    $(ZCOMPAT_SOURCES)
+	</sources>
+	<install-to>$(LIBDIR)</install-to>
+	<include>$(SRCDIR)/include</include>
+	
+	<define>ZCOMPAT_MAKINGDLL</define>
+    </dll>
+    <lib id="zcompats"  template="compile">
+	<libname>zcompats</libname>
+	<sources>
+	    $(ZCOMPAT_SOURCES)
+	</sources>
+	<install-to>$(LIBDIR)</install-to>
+	<include>$(SRCDIR)/include</include>
+    </lib>
+    <if cond="FORMAT=='autoconf'">       
+	<data-files>
+	    <srcdir>$(SRCDIR)/include/zcompat</srcdir>
+	    <install-to>$(INCLUDEDIR)/zcompat</install-to>
+	    <files>
+		zcompat.h
+		zpio.h
+		zsystype.h
+		zdefs.h
+		zlinkdll.h
+		ztools.h
+		zopt.h
+		zmm.h
+		zthread.h
+		zprintf.h
+		str.h
+	    </files>
+	</data-files>
+    </if>
+
+    <fragment format='autoconf' file="common_makefile.rules"/>
+</makefile>
+

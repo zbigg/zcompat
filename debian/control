@@ -1,0 +1,32 @@
+Source: zcompat
+Priority: optional
+Section: devel
+Maintainer: Zbigniew Zagorski (zbigg) <zbig@pentagon.eu.org>
+Build-Depends: debhelper (>= 4.0.0)
+Standards-Version: 3.6.0
+
+Package: libzcompat-dev
+Section: devel
+Architecture: any
+Depends: libzcompat (= ${Source-Version})
+Description: ZCompat C Library - Development Package
+ Documentation and headers for ZCompat Library.
+ .
+ ZCompat is a C library that provides portable Unix, Win32
+ api for variuos system features and other goodies:
+  - ZPIO - streaming standarization
+  - ZMOD - dynamic module loading
+  - ZTH  - threading support
+  - ZTOOLS - containers and strings
+
+Package: libzcompat
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ZCompat C Library
+ ZCompat is a C library that provides portable Unix, Win32
+ api for variuos system features and other goodies:
+  - ZPIO - streaming standarization
+  - ZMOD - dynamic module loading
+  - ZTH  - threading support
+  - ZTOOLS - containers and strings

@@ -1,0 +1,143 @@
+#
+#	File:		Makefile.in
+#
+#	Id:		$Id$
+#
+#	Project:	zcompat
+#
+#	Source type:	documentation
+#
+NAME=zcompat
+BUILD_SOURCES=\
+	zmod-reference.sgml\
+	zthread-reference.sgml\
+	zmm-reference.sgml
+
+
+STATIC_SOURCES=zcompat.docbook docinfo.docbook \
+	style-html.xsl style-xhtml.xsl 		\
+	style-htmlhelp.xsl style-html-nochunks.xsl style-xhtml-nochunks.xsl \
+	style.dsl
+
+SOURCES=$(BUILD_SOURCES) $(STATIC_SOURCES) entities.sgml
+
+srcdir=@srcdir@
+top_srcdir=@top_srcdir@
+top_builddir=../
+prefix = @prefix@
+datadir = @datadir@
+mandir = @mandir@
+docdir = @datadir@/doc/libzcompat
+
+
+DOCGEN=$(SHELL) ./docmake.sh
+
+
+MAKELINKS = $(top_srcdir)/misc/makelinks
+mkinstalldirs = $(SHELL) $(top_srcdir)/misc/mkdirs.sh
+INSTALL = @INSTALL@
+INSTALL_DATA = @INSTALL_DATA@
+
+DBGEN=@DBGEN@
+DBGEN_CMD=$(DBGEN) -i -c -nxh
+
+default: doc
+doc: html man
+all: doc
+html: html/index.html  htmlhelp/style.css
+man: man/zmod_creat.3
+pdf: pdf/zcompat.pdf
+htmlhelp: htmlhelp/index.html htmlhelp/style.css
+
+
+$(STATIC_SOURCES): 
+	cp -f $(srcdir)/$@ .
+
+htmlhelp/index.html: $(SOURCES)
+	$(DOCGEN) htmlhelp $(NAME).docbook
+	$(mkinstalldirs) htmlhelp/images
+	-cp $(srcdir)/images/*.png htmlhelp/images
+
+html/index.html: $(SOURCES) 
+	$(DOCGEN) html $(NAME).docbook
+	$(mkinstalldirs) html/images
+	-cp $(srcdir)/images/*.png html/images
+
+html/style.css: $(srcdir)/style.css
+	cp $(srcdir)/style.css html
+
+htmlhelp/style.css: $(srcdir)/style.css
+	cp $(srcdir)/style.css html
+
+pdf/zcompat.pdf: $(SOURCES)
+	$(DOCGEN) pdf zcompat.docbook
+
+man/zmod_creat.3: $(SOURCES)
+	$(DOCGEN) man zcompat.docbook
+    
+entities.sgml: Makefile
+	@echo creating $@
+	@echo -n "" > xentities.sgml
+	@for F in $(BUILD_SOURCES) ; do					\
+	    E=`echo -n $$F | sed "s/\.sgml//"` ; 			\
+	    echo "<!ENTITY $$E SYSTEM \"$$F\">" >> xentities.sgml ;	\
+	done 
+	@diff -w -q $@ xentities.sgml 2>&1 > /dev/null || { echo "updating $@" ; cat xentities.sgml > entities.sgml ; }
+	@rm -f xentities.sgml
+
+zmod-reference.sgml: $(top_srcdir)/src/zmod.c
+	$(DBGEN_CMD) -t reference $< > $@
+
+zthread-reference.sgml: $(top_srcdir)/include/zcompat/zthread.h
+	$(DBGEN_CMD) -t reference $< > $@
+
+zmm-reference.sgml: $(top_srcdir)/src/zmm*.c
+	$(DBGEN_CMD) -t reference $^ > $@
+
+distclean: clean
+	-rm -f Makefile
+
+clean:
+	-rm -f $(BUILD_SOURCES) html/*.html *.pdf *.out htmlhelp/*
+	-rm -rf man
+
+install: install-man install-html
+
+install-man: man
+	@echo Installing manpages to section3
+	$(mkinstalldirs) $(mandir)/man3
+	@for X in `find man -name "*.3"` ; do \
+	    echo -n "$$X " ; \
+	    $(INSTALL_DATA) $$X $(mandir)/man3 ; \
+	done
+	@echo 
+
+install-html: html
+	$(mkinstalldirs)  $(docdir)/html
+	$(mkinstalldirs)  $(docdir)/html/images
+	cp html/*.html html/*.css $(docdir)/html
+	-cp html/images/* $(docdir)/html/images
+
+install-pdf: pdf
+	$(mkinstalldirs)  $(docdir)
+	$(INSTALL_DATA) zcompat.pdf $(docdir)
+
+${top_srcdir}/Makefile.in: ${top_srcdir}/build/bakefile/*
+	@echo "... Rebaking makefiles by bakefile_gen ... "
+	(set -e ; cd $(top_srcdir)/build/bakefile ; bakefile_gen ; )
+
+${top_builddir}/config.h: ${top_srcdir}/config.h.in
+	@echo "::: Rebuilding config.h"
+	(cd $(top_builddir)./ ; ./config.status ; )
+
+${top_srcdir}/configure: ${top_srcdir}/configure.ac
+	@echo "::: Recreating configure script"
+	(cd $(top_srcdir); autoconf ; )
+
+$(top_builddir)./config.status : ${top_srcdir}/configure
+	@echo "::: Recheking configuration ..."
+	(cd $(top_builddir)./ ; ./config.status --recheck ; )
+
+Makefile: $(srcdir)/Makefile.in $(top_builddir)./config.status
+	@echo "::: Rebuilding autoconf generated  files ..."
+	(cd $(top_builddir)./ ; ./config.status ; )

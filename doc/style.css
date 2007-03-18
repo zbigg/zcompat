@@ -1,0 +1,108 @@
+.TITLE  {
+	background : #efefff;
+	padding : 4;
+}
+
+.SUBTITLE  {
+	background : #efefff;
+	padding : 6;
+}
+
+.NAVFOOTER,.NAVHEADER  {
+	background : #efefff;
+	font-size : small;
+}
+
+.VARNAME  {
+	font-family : monospace;
+	font-weight : bold;
+}
+
+.SYNOPSIS  {
+	margin-left : 40;
+	background : #efefff;
+	padding : 4;
+	border : solid #c0c0df;
+}
+
+.PROGRAMLISTING  {
+	margin-left : 40;
+	background : #efefff;
+	padding : 4;
+	border : solid #c0c0df;
+}
+
+.LEGALNOTICE  {
+	font-family : fixed;
+	padding : 6;
+	background : #efefff;
+}
+
+H1,H2,H3,H4 {
+	background : #efefff;
+	border-bottom-color: #a0a0bf;
+	border-bottom-style: solid;
+}
+H1  {
+	background : #efefff;
+	padding : 8;
+	border-left : 20px solid #c0c0df;;
+}
+H2  {
+	background : #efefff;
+	padding : 5;
+	border-left : 10px solid #c0c0df;;
+}
+H3  {
+    margin-left: 10;
+    padding: 3;
+}
+
+H4  {
+    margin-left: 20;
+    padding: 1;
+}
+
+
+P  {
+	margin-left : 20;
+}
+
+DT  {
+	font-weight : bold;
+	background-color : #efefff;
+	padding : 4;
+}
+
+DL  {
+	border : solid #efefff;
+	margin-left : 25;
+}
+
+.important  {
+	margin-left : 30;
+	padding : 4;
+	border : solid #fff540;
+	border-left-width : 30;
+}
+
+.note  {
+	margin-left : 40;
+	padding : 4;
+	border : solid #efefff;
+	border-left-width : 30;
+}
+
+.warning  {
+	margin-left : 20;
+	padding : 4;
+	border : solid #ff4040;
+	border-left-width : 30;
+}
+
+.example {
+	margin-left : 40;
+	border-left-width : 20;
+	border-style : solid;
+	border-color : #c0c0df;
+}

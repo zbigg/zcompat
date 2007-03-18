@@ -1,0 +1,48 @@
+zcompat (0.1.22-2) unstable; urgency=low
+
+  * libzcompat0 package is now replaced with libzcompat
+  * new build system
+  * libzcompat-dev now contains libzcompats.a which is static version of library
+
+ -- Zbigniew Zagorski (zbigg) <zbig@pentagon.eu.org>  Thu, 15 Jul 2004 12:52:26 +0200
+
+zcompat (0.1.22-1) unstable; urgency=low
+
+  * libraries names are now debian-policy aware
+
+ -- Zbigniew Zagorski (zbigg) <zbig@pentagon.eu.org>  Wed, 19 May 2004 16:20:20 +0200
+
+zcompat (0.1.22) unstable; urgency=low
+
+  * added zmm API (stable)
+  * improved documentation
+
+ -- Zbigniew Zagorski (zbigg) <zbig@pentagon.eu.org>  Sat, 10 Apr 2004 11:43:08 +0200
+
+zcompat (0.1.21) unstable; urgency=low
+
+  * tests/ - tests infractructure is now working
+  * doc/ - added zthread documentation
+  * added zthread (is now unstable, not merged with pavko version)
+
+ -- Zbigniew Zagorski (zbigg) <zbig@pentagon.eu.org>  Thu, 25 Mar 2004 18:33:39 +0100
+
+zcompat (0.1.20-3) unstable; urgency=low
+
+  * changed mainteiner data, same person
+
+ -- Zbigniew Zagorski (zbigg) <zbig@pentagon.eu.org>  Thu, 25 Mar 2004 12:28:56 +0100
+
+zcompat (0.1.20-2) unstable; urgency=low
+
+  * debian documentation installs now OK
+  * debian package installs ok
+
+ -- Zbigniew Zagorski <zzbigg@o2.pl>  Tue, 23 Mar 2004 03:36:34 +0100
+
+zcompat (0.1.20-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Zbigniew Zagórski <zzbigg@o2.pl>  Sat, 13 Mar 2004 02:04:30 +0100
+

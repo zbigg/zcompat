@@ -1,0 +1,6 @@
+- win32 - bakefiles
+    define HAVE_CONFIG_H and add include dir to build/msvc6 to see
+    config.h that exists there
+- win32 - create lib directory and compile libraries
+    into lib/ directory
+    msvc: intermiediate directory ... build/msvc6/Debug,Release,...

@@ -1,0 +1,407 @@
+EXPORTS
+;
+; Id: $Id$
+;
+
+;;;;;;;;;;;;
+; ZPIO
+;;;;;;;;;;;;
+	zcreat
+	zclose
+	zclosesub
+	zread
+	zwrite
+	zseek
+	zstream_ref
+	zfctl
+	zf_push
+	zf_pop
+
+	zpio_getcon
+	zpio_freecon
+
+	zsetbuf
+	zflush
+
+	zopen
+	zfopen
+	zpio_get_zfopen_preffered
+	zpio_get_std_stream
+	zpio_send
+
+	zsopen
+	zsreopen
+	zpopen
+
+	zhttpopen
+	zmailopen
+	zmailclose
+
+	zdscreat
+	zmbopen
+	zstropen
+	zdopen
+
+	zpio_chain_new
+	zpio_chain_add
+
+	zprintf
+	zfprintf
+	zvfprintf
+	zuprintf
+	zvuprintf
+
+	zfgets
+	zfgetc
+	zgets
+
+	zfputs
+	zputs
+	zfputc
+	zputc
+
+	zreads
+	zfname
+	zungetc
+
+	zeof
+	zperror
+	zstrerror
+
+	zpio_get_std_stream
+
+	zsnprintf
+	zvsnprintf
+	zsaprintf
+	zvsaprintf
+	zvformatter
+
+	zpio_access
+	zpio_mkpath
+	zpio_mkdir
+	zpio_rmdir
+	zpio_rm
+
+	zpio_find_file_by_path
+	zpio_find_file_by_paths
+	zpio_path_is_abs
+
+	zpio_path_to_portable
+	zpio_path_to_sys
+
+	zpio_file_set_ext
+	zpio_file_has_ext
+
+	zpio_chmod_ex
+
+	zcharconv
+	zcharconv_get
+	zcconv_new
+	zcconv_free
+	zcconv
+	zcconv_dest_size
+	zcconv_dest_length
+
+	zpio_zlinkdll_set_alloc
+
+	zpio_malloc
+	zpio_free
+	zpio_realloc
+	zpio_calloc
+	zpio_strdup
+
+	zbwrite_l
+	zbwrite_lv
+	zbwrite_i
+	zbwrite_iv
+	zbwrite_h
+	zbwrite_hv
+	zbwrite_c
+	zbwrite_cv
+	zbwrite_s
+	zbread_l
+	zbread_lv
+	zbread_i
+	zbread_iv
+	zbread_h
+	zbread_hv
+	zbread_c
+	zbread_cv
+	zbread_s
+
+	znwrite_l
+	znwrite_lv
+	znwrite_h
+	znwrite_hv
+	znwrite_s
+	znread_l
+	znread_lv
+	znread_h
+	znread_hv
+	znread_s
+
+;;;;;;;;;;;;
+;	ZMOD
+;;;;;;;;;;;;
+	zmod_creat
+	zmod_load
+	zmod_free
+	zmod_enum
+	zmod_lock_sym
+	zmod_free_sym
+	zmod_lockfunc
+	zmod_unlockfunc
+	zmod_error
+	zmod_get_modinfo
+
+	zmod_set_find_path
+	zmod_push_find_path
+	zmod_pop_find_path
+
+;;;;;;;;;;;;
+;	ZTOOLS
+;;;;;;;;;;;;
+
+	sbuffer_init
+	sbuffer_done
+	sbuffer_new
+	sbuffer_free
+
+	sbuffer_delete
+
+	sbuffer_resize
+	sbuffer_set_min_size
+
+	;slist_init
+	;slist_done
+
+	slist_new
+	;slist_free
+	slist_delete
+
+	slist_empty
+	slist_add
+	slist_del
+	slist_del_all
+
+	slist_begin
+	slist_end
+	sli_inc
+	sli_eq
+	sli_free
+	sli_get
+	;sli_first
+	;sli_next
+	sli_end
+
+	;sstack_init
+	;sstack_done
+
+	sstack_new
+	sstack_free
+	sstack_delete
+
+	sstack_push
+	sstack_pop
+	sstack_empty
+	sstack_left
+
+	;sstr_init
+	;sstr_done
+
+	sstr_new
+	sstr_news
+	sstr_free
+	sstr_frees
+	sstr_len
+	sstr_capacity
+	sstr_set
+	sstr_safe_set
+	sstr_sets
+	sstr_add
+	sstr_addc
+	sstr_add_len
+	sstr_addc_len
+	sstr_addi
+	sstr_addf
+
+	;sbtree_init
+	;sbtree_done
+
+	sbtree_new
+	sbtree_free
+	sbtree_frees
+	sbtree_delete
+
+	sbtree_add
+	sbtree_del
+	sbtree_del_i
+	sbtree_find
+	sbtree_find_i
+
+	sbtree_begin
+	sbtree_end
+
+	sbti_free
+	sbti_inc
+	sbti_dec
+	sbti_eq
+	sbti_get
+	sbti_key
+
+
+	smap_add
+	smap_add_i
+	smap_begin
+	smap_del
+	smap_del_i
+	smap_delete
+	smap_done
+	smap_end
+	smap_find
+	smap_find_i
+	smap_find_cust
+	smap_find_cust_i
+	smap_free
+	smap_frees
+	smap_init
+	smap_new
+	smapi_dec
+	smapi_end
+	smapi_eq
+	smapi_free
+	smapi_set
+	smapi_get
+	smapi_inc
+	smapi_key
+
+	ztools_zlinkdll_set_alloc
+
+	ztools_malloc
+	ztools_calloc
+	ztools_realloc
+	ztools_free
+	ztools_strdup
+
+	mdmf_stats
+	mdmf_fstats
+	mdmf_zfstats
+	mdmf_malloc
+	mdmf_calloc
+	mdmf_realloc
+	mdmf_strdup
+	mdmf_free
+
+; ZMM
+	zmm_alloc
+	zmm_alloc_dbg
+	zmm_realloc
+	zmm_realloc_dbg
+	zmm_free
+	zmm_strdup
+	zmm_info
+	zmm_stats
+	zmm_delete
+
+	zmm_new_constsize_allocator
+	zmm_new_incremental_allocator
+
+; ZCOMPAT
+	zc_strncat
+	zc_strncpy
+
+	zc_strcasecmp
+	zc_strncasecmp
+	zc_atexit
+	zc_set_atexit
+; ZC STR
+	zcs_new
+	zcs_newn
+	zcs_new_zcs
+	zcs_free
+	zcs_ref
+	zcs_alloc
+	zc_str_empty
+
+	zcs_cmp
+
+	zcs_set
+	zcs_setn
+	zcs_set_zcs
+
+	zcs_add
+	zcs_addn
+	zcs_add_zcs
+
+	zcs_add_char
+	zcs_add_int
+	zcs_add_float
+
+	zcs_bwrite
+	zcs_bread
+
+	zcs_erase_blank
+
+	zcs_sprintf
+	zcs_vprintf
+; ZTHREAD
+	zth_begin
+	zth_self
+	zth_exit
+	zth_get_sys_handle
+	zmt_init
+	zmt_new
+	zmt_free
+	zmt_frees
+	zmt_lock
+	zmt_try_lock
+	zmt_unlock
+; ZPIO compat layer
+	zpioc_fopen
+	zpioc_fdopen
+	zpioc_freopen
+	zpioc_popen
+	zpioc_tmpfile
+
+	zpioc_fclose
+	zpioc_pclose
+
+	zpioc_fread
+	zpioc_fwrite
+
+	zpioc_clearerr
+	zpioc_feof
+	zpioc_ferror
+	zpioc_fflush
+	zpioc_fileno
+
+	zpioc_fgetpos
+	zpioc_fsetpos
+	zpioc_fseek
+	zpioc_ftell
+	zpioc_rewind
+
+	zpioc_setbuf
+	zpioc_setvbuf
+
+	zpioc_getc
+	zpioc_getchar
+	zpioc_fgetc
+	zpioc_ungetc
+	zpioc_fputc
+	zpioc_putc
+	zpioc_putchar
+
+	zpioc_puts
+	zpioc_gets
+	zpioc_fgets
+	zpioc_fputs
+
+	zpioc_fprintf
+	zpioc_fscanf
+	zpioc_perror
+	zpioc_printf
+	zpioc_vfprintf
+	zpioc_vprintf
+
+	zpioc_scanf

@@ -1,0 +1,10 @@
+Document: libzcompat
+Title: Debian ZCompat Library Reference
+Author: Zbigniew Zagorski <zzbigg@o2.pl>
+Abstract: ZCompat is a C library that provides portable Unix, Win32
+          api for variuos system features like: streaming, sockets, DLL and others.
+Section: Apps/Programming
+
+Format: HTML
+Index: /usr/share/doc/libzcompat/html/index.html
+Files: /usr/share/doc/libzcompat/html/*.html

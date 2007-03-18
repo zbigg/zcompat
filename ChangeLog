@@ -1,0 +1,202 @@
+      
+2004-09-24 Changeset 1.31 by zbig@pentagon.eu.org
+        configure ...:
+             added test for pthread_mutex_timedlock
+        mfifo:
+             fixed ... is now stable
+        zthread:
+             use timed mutex lock if available
+
+
+2004-09-23 Changeset 1.30 by zbig@pentagon.eu.org
+        - new module mfifo (not tested)
+          memory / thread safe / pipe
+          -- function zpio_mfifo_new
+
+
+2004-07-15 Changeset 1.29 by zbig@pentagon.eu.org
+        debian changes ...
+          * changed name libzzcompat0 -> libzcompat
+
+
+2004-07-15 Changeset 1.28 by zbig@pentagon.eu.org
+        doc/Makefile.in
+            merge ... uff
+
+
+2004-07-15 Changeset 1.25.1.1 by zbig@pentagon.eu.org
+        doc/Makefile.in
+            removed unneded stuff (man1 and so on)
+        src/vform.c
+            removed warning about no default: in some switch
+
+
+2004-07-15 Changeset 1.27 by zbig@pentagon.eu.org
+        * added target zcompats ... which is zcompat static library
+        * new configuration files: config.guess and config.sub
+
+
+2004-07-14 Changeset 1.26 by zbig@pentagon.eu.org
+        build:
+           * new build system based on bakefile
+           * rebuilded configure script for new autoconf version (2.59)
+        sources:
+           * removed lot of warnings
+           * removed almost all casts on lvalues
+
+
+2004-07-08 Changeset 1.25 by zbig@pentagon.eu.org
+        added zopt:
+           zc_getopt
+           zc_genusage
+
+
+2004-05-22 Changeset 1.24 by zbigg@veinard.dom
+        - zc_str - reference counted string (from axl):
+          zcs_XX functions
+
+
+2004-05-18 Changeset 1.23 by zbigg@veinard.dom
+        Merge veinard.dom:/home/src/repo/zcompat
+        into veinard.dom:/home/src/debian-src/libzcompat
+
+
+2004-05-18 Changeset 1.19.1.1 by zbigg@veinard.dom
+        * doc/zcompat.docbook- added <index> to documentation
+        * config.sub - added
+
+
+2004-05-17 Changeset 1.22 by zbigg@veinard.dom
+        Merge veinard.dom:/nowy/work/src/zcompat
+        into veinard.dom:/home/src/zcompat
+
+
+2004-05-08 Changeset 1.18.1.5 by zbigg@nowy.dom
+        now ignore win32 build shit
+
+
+2004-05-08 Changeset 1.18.1.4 by zbigg@nowy.dom
+        win32: 
+         - updated .def file
+         - fixed mingw build
+
+
+2004-05-06 Changeset 1.21 by zbigg@bip.veinard
+        merge ...
+
+
+2004-05-06 Changeset 1.8.1.1 by zbigg@bip.veinard
+        configure - rebuild ... 
+        doc/style-htmlhelp.xsl -create htmlhelp index file *.hhk
+        doc/style.dsl - change css name to style.css
+        include zthread
+
+
+2004-04-21 Changeset 1.18.1.3 by nikt@nowy.dom
+        added project dist
+
+
+2004-04-21 Changeset 1.18.1.2 by nikt@nowy.dom
+        added projects for MSVC
+
+
+2004-04-21 Changeset 1.17.1.5 by nikt@nowy.dom
+        added function zc_atexit and zc_set_atexit
+        use zc_atexit
+
+
+2004-04-14 Changeset 1.17.1.4 by nikt@nowy.dom
+        removed warnings on some sources
+
+
+2004-04-13 Changeset 1.17.1.3 by nikt@nowy.dom
+        ansi.c:
+          define extern int dup() on windows
+
+
+2004-04-13 Changeset 1.17.1.2 by nikt@nowy.dom
+        win32: add zmm functions to zcompat.def
+
+
+2004-04-13 Changeset 1.17.1.1 by nikt@nowy.dom
+        fixwarnings: by MSVC
+
+
+2004-04-11 Changeset 1.18 by zbigg@nowy.dom
+        updated changelogs
+        updated debian section to : devel
+
+
+2004-04-07 Changeset 1.17 by zbigg@nowy.dom
+        doc: added missing images to repo
+
+old style `bk changes` entries:
+
+    ChangeSet@1.16, 2004-04-07 15:56:39+02:00, zbigg@nowy.dom
+      updated changelog and autoconf script ...
+
+    ChangeSet@1.15, 2004-04-07 15:55:26+02:00, zbigg@nowy.dom
+      doc: updated
+          admon and navigation graphics
+          generate hhk on htmlhelp
+          better build
+          new stylesheet
+          added images
+          add: zzm_reference to build
+
+    ChangeSet@1.14, 2004-04-07 14:54:26+02:00, zbigg@nowy.dom
+      zmm: API is stable
+      zmm: no bugs found
+      zmm,tests: new test for zmm
+      zmm,doc: zmm is in beta stage of documenting (using dbgen)
+      tests: fixed known minor bug in test script
+
+    ChangeSet@1.13, 2004-03-25 18:32:30+01:00, zbigg@nowy.dom
+      * tests/ - tests infractructure is now working
+      * doc/ - added zthread documentation
+      * added zthread (is now unstable, not merged with pavko version)
+
+    ChangeSet@1.12, 2004-03-23 03:36:07+01:00, zbigg@nowy.dom
+      updated debian build .. now it's ok
+
+    ChangeSet@1.11, 2004-03-21 22:43:58+01:00, zbigg@nowy.dom
+      fix: generateheader  refentry name in doc !
+
+    ChangeSet@1.10, 2004-03-21 17:04:30+01:00, zbigg@nowy.dom
+      debian and docs update
+
+    ChangeSet@1.9, 2004-03-21 15:40:47+01:00, zbigg@nowy.dom
+      updated bk ignore list ...
+      new - correct debian build files
+
+    ChangeSet@1.8, 2004-03-20 00:42:20+01:00, nikt@nowy.dom
+      begin zalloc.c and zmm memory management
+      posix.c - fixed
+      consigure fixed
+
+    ChangeSet@1.7, 2004-03-13 02:42:22+01:00, zbigg@nowy.dom
+      fixed some makefile problems ...
+      debian packaging now worls fine ...
+
+    ChangeSet@1.6, 2004-03-13 01:06:10+01:00, zbigg@nowy.dom
+      added missing docmake.sh.in
+
+    ChangeSet@1.5, 2004-03-13 01:00:02+01:00, zbigg@nowy.dom
+      first try o work ...
+
+    ChangeSet@1.4, 2004-02-24 19:04:29+01:00, zbigg@marl.(none)
+      added misc directory from axl
+
+    ChangeSet@1.3, 2004-02-24 19:03:56+01:00, zbigg@marl.(none)
+      added zcompat.h
+
+    ChangeSet@1.2, 2004-02-24 19:01:53+01:00, zbigg@marl.(none)
+      begin detach from axl ... not finished yet
+
+    ChangeSet@1.1, 2004-02-24 18:27:54+01:00, zbigg@marl.(none)
+      Initial repository create
+
+    ChangeSet@1.0, 2004-02-24 18:27:52+01:00, zbigg@marl.(none)
+      BitKeeper file /home/src/zcompat/ChangeSet
+
+
