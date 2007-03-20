@@ -23,21 +23,6 @@
 #ifndef __zpio_i_h_
 #define __zpio_i_h_
 
-#ifdef HAVE_ZLINKDLL_H
-#include "zcompat/zlinkdll.h"
-
-DECL_DLL_ALLOC_VECT(zpio);
-
-#else
-
-#define zpio_malloc	malloc
-#define zpio_calloc	calloc
-#define zpio_realloc	realloc
-#define zpio_free	free
-#define zpio_strdup	strdup
-
-#endif
-
 #ifndef HAVE_STRCASECMP
 int strcasecmp(const char*, const char*);
 #endif

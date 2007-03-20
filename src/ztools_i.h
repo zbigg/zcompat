@@ -16,13 +16,17 @@
 
 #include "zcompat/zlinkdll.h"
 
-DECL_DLL_ALLOC_VECT(ztools);
-
 #define zt_malloc   ztools_malloc
 #define zt_calloc   ztools_calloc
 #define zt_realloc  ztools_realloc
 #define zt_free	    ztools_free
 #define zt_strdup   ztools_strdup
+
+#define ztools_malloc   zcompat_malloc
+#define ztools_calloc   zcompat_calloc
+#define ztools_realloc  zcompat_realloc
+#define ztools_free	    zcompat_free
+#define ztools_strdup   zcompat_strdup
 
 #endif /* force single include of file */
 

@@ -102,13 +102,6 @@ EXPORTS
 	zcconv_dest_size
 	zcconv_dest_length
 
-	zpio_zlinkdll_set_alloc
-
-	zpio_malloc
-	zpio_free
-	zpio_realloc
-	zpio_calloc
-	zpio_strdup
 
 	zbwrite_l
 	zbwrite_lv
@@ -275,13 +268,6 @@ EXPORTS
 	smapi_inc
 	smapi_key
 
-	ztools_zlinkdll_set_alloc
-
-	ztools_malloc
-	ztools_calloc
-	ztools_realloc
-	ztools_free
-	ztools_strdup
 
 	mdmf_stats
 	mdmf_fstats
@@ -314,6 +300,12 @@ EXPORTS
 	zc_strncasecmp
 	zc_atexit
 	zc_set_atexit
+
+	zcompat_malloc
+	zcompat_free
+	zcompat_realloc
+	zcompat_calloc
+	zcompat_strdup
 ; ZC STR
 	zcs_new
 	zcs_newn
