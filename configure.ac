@@ -21,7 +21,19 @@ AC_CONFIG_SRCDIR([include/zcompat/zcompat.h])
 AC_CONFIG_HEADER([config.h])
 
 AC_CANONICAL_SYSTEM
-AC_BAKEFILE
+AC_EXEEXT
+AC_BAKEFILE([m4_include(autoconf_inc.m4)])
+
+case "$target" in
+*-cygwin|*-cygwin*)
+	CYGWIN="yes";
+	;;
+*-mingw|*-mingw32)
+	MINGW32="yes";
+	GNUWIN="yes"
+	;;
+esac
+
 
 AC_DEFINE_UNQUOTED(HAVE_ZPIO,1,[always have zpio library])
 AC_DEFINE_UNQUOTED(HAVE_ZCOMPAT,1,[always have zcompat library])
@@ -31,12 +43,9 @@ AC_DEFINE_UNQUOTED(BUILD_ZCOMPAT,1,[tell other libraries that we are inside zcom
 
 # Checks for programs.
 AC_PROG_CC
-AC_PROG_LEX
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_RANLIB
-AC_PROG_CPP
-AC_PROG_YACC
 
 AC_CHECK_PROGS(DBGEN, dbgen axl_mksgml src2docbook)
 AC_PATH_PROG(XMLTO, xmlto)
@@ -74,6 +83,12 @@ AC_CHECK_FUNCS(
     [atexit dup2 gethostbyname memmove memset mkdir modf \
     pow rmdir socket strcasecmp strchr strcspn strdup strerror \
     strncasecmp strrchr strstr strtol pthread_mutex_timedlock ])
+
+if test "X$GNUWIN" != "Xno" ; then
+    LIBS="$LIBS -lwsock32"
+    AC_DEFINE_UNQUOTED(HAVE_CREATEFILE,1,[define if have CreateFile system call])
+    AC_DEFINE_UNQUOTED(HAVE_LOADLIBRARY,1,[define if have LoadLibrary system call])
+fi
 
 CPPFLAGS="-DHAVE_CONFIG_H $CPPFLAGS"
 LDFLAGS="$LDFLAGS $LIBS"

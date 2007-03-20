@@ -1,35 +1,31 @@
 <?xml version="1.0" ?>
 <makefile>
     <option name="BUILD">
-	<values>debug,release</values>
-	<default-value>release</default-value>
+        <values>debug,release</values>
+	<values-description>Debug,Release</values-description>				
+        <default-value>release</default-value>
     </option>
     <set var="OPTIMIZE_FLAG">
-	<if cond="BUILD=='release'">speed</if>
-	<if cond="BUILD=='debug'">off</if>
+        <if cond="BUILD=='release'">speed</if>
+        <if cond="BUILD=='debug'">off</if>
     </set>
     <set var="DEBUG_FLAG">
-	<if cond="BUILD=='release'">off</if>
-	<if cond="BUILD=='debug'">on</if>
+        <if cond="BUILD=='release'">off</if>
+        <if cond="BUILD=='debug'">on</if>
     </set>
     <set var="WARNING_FLAG">
-	<if cond="BUILD=='release'">default</if>
-	<if cond="BUILD=='debug'">max</if>
+        <if cond="BUILD=='release'">default</if>
+        <if cond="BUILD=='debug'">max</if>
     </set>
-    <set var="DEVENV">
-    	<if cond="FORMAT=='autoconf'">gnu</if>
-	<if cond="FORMAT in ['msvc6prj', 'msvc7prj', 'msvc']">msvc</if>
+    <set var="LIB_DEBUG_SUFFIX">
+        <if cond="BUILD=='debug'">d</if>
     </set>
+    
     <template id="compile">
-	<optimize>$(OPTIMIZE_FLAG)</optimize>	
-	<debug-info>$(DEBUG_FLAG)</debug-info>
-	<if cond="DEVENV=='gnu'">
-		<include>${top_builddir}.</include>
-	</if>
-	<if cond="DEVENV!='gnu'">
-    		<include>build/$(DEVENV)</include>
-	</if>
-	<warnings>$(WARNING_FLAG)</warnings>
+        <optimize>$(OPTIMIZE_FLAG)</optimize>	
+        <debug-info>$(DEBUG_FLAG)</debug-info>
+        <include>${top_builddir}.</include>
+        <warnings>$(WARNING_FLAG)</warnings>
     </template>
     <!-- A hack to keep autoconf happy (we pass CPPFLAGS that contain
          {top_srcdir} from configure, poor bakefile can't know that

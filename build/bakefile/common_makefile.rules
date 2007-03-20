@@ -2,9 +2,9 @@
 # Keep Makefile & config.h recent
 #
 
-${top_srcdir}/Makefile.in: ${top_srcdir}/build/bakefile/*
-	@echo "... Rebaking makefiles by bakefile_gen ... "
-	(set -e ; cd $(top_srcdir)/build/bakefile ; bakefile_gen ; )
+#${top_srcdir}/Makefile.in: ${top_srcdir}/build/bakefile/*
+#	@echo "... Rebaking makefiles by bakefile_gen ... "
+#	(set -e ; cd $(top_srcdir)/build/bakefile ; bakefile_gen ; )
 
 ${top_builddir}/config.h: ${top_srcdir}/config.h.in
 	@echo "::: Rebuilding config.h"
