@@ -120,7 +120,7 @@ int	zclosesub(ZSTREAM s,int mode)
 
 ZSTREAM zcreat(zstream_vtable_t* vt,const char* name,int mode)
 {
-    ZSTREAM f = zpio_calloc(1, sizeof( zstream_t ) + sizeof(unsigned long) * vt->vt_data_size );
+    ZSTREAM f = zcompat_calloc(1, sizeof( zstream_t ) + sizeof(unsigned long) * vt->vt_data_size );
     if( f == NULL )
 	return NULL;
     f->vtable = vt;
@@ -221,10 +221,10 @@ int	zungetc_set_min_size(int** top, int** start, unsigned* cap,int new_size)
     int* tmp;
     if( *cap != 0 ) {
 	*cap = *cap * new_size;
-	tmp = (int*)zpio_realloc( *start, sizeof(int) * *cap );
+	tmp = (int*)zcompat_realloc( *start, sizeof(int) * *cap );
     } else {
 	*cap = new_size;
-	tmp = (int*)zpio_malloc( sizeof(int) * *cap);
+	tmp = (int*)zcompat_malloc( sizeof(int) * *cap);
     }
     if( tmp == NULL )
 	return -1;
@@ -239,10 +239,10 @@ int	zungetc_grow(int** top, int** start, unsigned* cap)
     int* tmp;
     if( *cap != 0 ) {
 	*cap = *cap * 2;
-	tmp = (int*)zpio_realloc( *start, sizeof(int) * *cap );
+	tmp = (int*)zcompat_realloc( *start, sizeof(int) * *cap );
     } else {
 	*cap = 2;
-	tmp = (int*)zpio_malloc( sizeof(int) * *cap);
+	tmp = (int*)zcompat_malloc( sizeof(int) * *cap);
     }
     if( tmp == NULL )
 	return -1;
@@ -257,7 +257,7 @@ void zungetc_shrink(int** top, int** start, unsigned* cap)
     int* tmp;
     if( size*2 < *cap ) {
 	*cap = *cap / 2;
-	tmp = zpio_realloc( *start, sizeof(int) * *cap );
+	tmp = zcompat_realloc( *start, sizeof(int) * *cap );
 	if( tmp == NULL ) {
 	    *start = NULL;
 	    *top = NULL;
@@ -671,7 +671,7 @@ char* zst_strdup2(const char* s1,const char* s2)
     int len;
     int a = strlen(s1);
     len = a+strlen(s2)+1;
-    s =(char*)zpio_malloc(len);
+    s =(char*)zcompat_malloc(len);
     if( s == NULL )
 	return NULL;
     strcpy(s,s1);
@@ -756,7 +756,7 @@ static int zset_bufsize(struct zstream_buf* buf,int size)
     default: {	/* enable and/or change size */
 	void* tmp;
 	    if( buf->buffer_size == 0 || buf->buffer == NULL ) {
-		tmp = zpio_malloc(size);
+		tmp = zcompat_malloc(size);
 		if( !tmp )
 		    return -1;
 		buf->buffer = tmp;
@@ -765,7 +765,7 @@ static int zset_bufsize(struct zstream_buf* buf,int size)
 		buf->end = tmp;
 	    } else {
 		int x;
-		tmp = zpio_realloc(buf->buffer, size);
+		tmp = zcompat_realloc(buf->buffer, size);
 		if( !tmp )
 		    return -1;
 		{

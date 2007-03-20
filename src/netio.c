@@ -155,7 +155,7 @@ int	znread_s(ZSTREAM f,char** c)
     int r;
     *c = NULL;
     if( (r = znread_l(f,&l)) > 0 ) {
-	*c = zpio_malloc(l+1);
+	*c = zcompat_malloc(l+1);
 	if( !c ) return -1;
 	r += zread(f,*c,l);
 	(*c)[l] = 0;

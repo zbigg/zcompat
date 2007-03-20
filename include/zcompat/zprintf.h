@@ -25,9 +25,7 @@
 
 #define INC_ZPRINTF
 
-#ifndef WITHOUT_ZSYSTYPE
-#include "zcompat/zsystype.h"
-#endif /* WITHOUT_ZSYSTYPE */
+#include "zcompat/zcompat.h"
 
 #include <stdarg.h>
 #include <stddef.h>

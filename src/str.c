@@ -332,7 +332,7 @@ zc_str	zcs_bread	(ZSTREAM f)
     if( znread_l(f, &len ) <= 0 ) return NULL;
     s = zcs_alloc(len);
     if( s == NULL ) return NULL;
-    if( zread(f,zcs_ptr(s),len) < len ) { zcs_free(s); return NULL; }
+    if( zread(f,zcs_ptr(s),len) < (int)len ) { zcs_free(s); return NULL; }
     zcs_ptr(s)[len] = '\0';
     s->length = len;
     return s;

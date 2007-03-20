@@ -21,6 +21,7 @@
 #include <string.h>
 
 
+#include "zcompat/zcompat.h"
 #include "zcompat/ztools.h"
 #include "ztools_i.h"
 

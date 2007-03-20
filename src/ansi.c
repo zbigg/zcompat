@@ -77,7 +77,7 @@ ZSTREAM	zansi_open	(ZSTREAM f,const char* name,int mode)
 	ansi_f = (long)fopen(name,zpio_openflags_2_ansi_openflags(mode));
 	if( ansi_f == 0 )
 	    return NULL;
-	f->name = (char*)zpio_strdup(name);
+	f->name = (char*)zcompat_strdup(name);
     } else {
 	ansi_f = mode;
 	f->name = NULL;

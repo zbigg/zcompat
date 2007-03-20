@@ -58,7 +58,7 @@ typedef struct mfifo_data {
 #define UNLOCK() zmt_unlock(mfifo->lock);
 static mfifo_data* mfifo_data_new(size_t size)
 {
-    mfifo_data* mfifo = (mfifo_data* )zpio_calloc(1,sizeof( mfifo_data ));
+    mfifo_data* mfifo = (mfifo_data* )zcompat_calloc(1,sizeof( mfifo_data ));
     sbuffer_init(&mfifo->buffer,size);
     mfifo->lock = zmt_new();
     mfifo->empty_lock = zmt_new();

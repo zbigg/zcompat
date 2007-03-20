@@ -86,7 +86,7 @@ ZSTREAM zposix_open	(ZSTREAM f,const char* name,int mode)
 #endif
 #endif
 		 );
-	f->name = zpio_strdup(name);
+	f->name = zcompat_strdup(name);
     } else {
 	posix_d = mode;
 	f->name = 0;

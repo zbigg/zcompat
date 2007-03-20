@@ -83,7 +83,7 @@ ZSTREAM zdopen(int fd,const char* filename)
 {
     ZSTREAM a = zcreat(&zvt_posix,NULL,fd);
     if( a != NULL  ) {
-	a->name = zpio_strdup(filename);
+	a->name = zcompat_strdup(filename);
     }
     return a;
 }
@@ -91,7 +91,7 @@ ZSTREAM zansiopen(FILE* f,const char* filename)
 {
     ZSTREAM a = zcreat(&zvt_ansi,NULL,(int)f);
     if( a != NULL ) {
-	a->name = zpio_strdup(filename);
+	a->name = zcompat_strdup(filename);
     }
     return a;
 }

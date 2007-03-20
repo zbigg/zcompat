@@ -115,7 +115,7 @@ ZSTREAM zmembuf_open	(ZSTREAM f,const char* name,int mode)
 
     if( zmb_buffer == NULL ) {
 	if( zmb_is_dynamic && zmb_capacity > 0 ) {
-	    zmbs_buffer(zpio_malloc(zmb_capacity));
+	    zmbs_buffer(zcompat_malloc(zmb_capacity));
 	    if( zmb_buffer == NULL )
 		return NULL;
 	    zmbs_datasize(0);
@@ -174,7 +174,7 @@ int	zmembuf_write	(ZSTREAM f,const void* buf,size_t size)
 	if( zmb_pointer + size > zmb_capacity ) {
 	    if( zmb_is_growable ) {
 		do {
-		    char* tmp = zpio_realloc( zmb_buffer, zmb_capacity * 2 );
+		    char* tmp = zcompat_realloc( zmb_buffer, zmb_capacity * 2 );
 		    if( tmp == NULL ) {
 			size = zmb_capacity  - zmb_pointer;
 			break;

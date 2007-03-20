@@ -22,10 +22,6 @@
 
 #include "zcompat/zlinkdll.h"
 
-DEF_DLL_ALLOC_VECT_FUNC(ztools)
-
-END_DLL_ALLOC_VECT_FUNC(ztools)
-
 #if 0
 ztools_obj_desc ztools_int_desc =  {
     /* size of object */	    sizeof(int),    

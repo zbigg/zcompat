@@ -142,20 +142,20 @@ typedef  mod_rec* mod_t;
 extern "C" {
 #endif
 
-extern	mod_t mod_global;
-mod_t	zmod_creat(mod_info* module_info);
-mod_t	zmod_load(const char* module_name);
-int	zmod_free(mod_t module_handle);
-int	zmod_enum(void (*enum_f)(mod_t));
-const char* zmod_error(void);
-char*	zmod_set_find_path(char* path);
-char*	zmod_pop_find_path();
-int	zmod_push_find_path(char* path);
-mod_info* zmod_get_modinfo(mod_t module_handle);
-void*	zmod_lockfunc(mod_t module_handle,const char* fname);
-void*	zmod_lock_sym(const char* mod,const char* sym);
-int	zmod_free_sym(const char* mod,const char* sym);
-int	zmod_unlockfunc(mod_t module_handle,void* func);
+ZCEXPORT extern	mod_t mod_global;
+ZCEXPORT mod_t	zmod_creat(mod_info* module_info);
+ZCEXPORT mod_t	zmod_load(const char* module_name);
+ZCEXPORT int	zmod_free(mod_t module_handle);
+ZCEXPORT int	zmod_enum(void (*enum_f)(mod_t));
+ZCEXPORT const char* zmod_error(void);
+ZCEXPORT char*	zmod_set_find_path(char* path);
+ZCEXPORT char*	zmod_pop_find_path();
+ZCEXPORT int	zmod_push_find_path(char* path);
+ZCEXPORT mod_info* zmod_get_modinfo(mod_t module_handle);
+ZCEXPORT void*	zmod_lockfunc(mod_t module_handle,const char* fname);
+ZCEXPORT void*	zmod_lock_sym(const char* mod,const char* sym);
+ZCEXPORT int	zmod_free_sym(const char* mod,const char* sym);
+ZCEXPORT int	zmod_unlockfunc(mod_t module_handle,void* func);
 
 
 #ifdef __cplusplus

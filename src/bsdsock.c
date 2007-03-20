@@ -190,7 +190,7 @@ static ZSTREAM	zbsdsocket_open_connect	(ZSTREAM f,const char* rhost,int rport)
 
     if( rport == -1 ) {
 	ZFL_SET(f->flags,ZSF_PUBLIC);
-	f->name = (char*)zpio_strdup("socket://previously-opened socket");
+	f->name = (char*)zcompat_strdup("socket://previously-opened socket");
 	return f;
     }
     if( in_get_addr(rhost,rport,&sa) < 0 ) {

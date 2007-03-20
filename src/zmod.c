@@ -663,7 +663,7 @@ static int	zmod_find_file_name(const char* name,char* buf,int max);
 #endif /* have got x_OK constants */
 static int	zmod_access(const char* path, int type);
 
-const char*	zmod_error(void)
+ZCEXPORT const char*	zmod_error(void)
 {
     return zmod_last_error;
 }
@@ -690,10 +690,11 @@ static int	init_modules_list(void)
     zc_atexit(done_modules_list);
     return 0;
 }
+static int	zmod_free_nl(mod_t mod);
 static void	done_modules_list(void)
 {
     if( modules ) {
-	static int	zmod_free_nl(mod_t mod);
+	
 	SBTI_START_ENUM(modules,i,k,mod_t) {
 	    zmod_free_nl(i);
 	} SBTI_STOP_ENUM
@@ -733,7 +734,7 @@ static mod_t		zmod_list_del(mod_t mod)
 	return (mod_t)sbtree_del(modules,mod->info->internal_name);
     return NULL;
 }
-mod_t zmod_creat(mod_info* info)
+ZCEXPORT mod_t zmod_creat(mod_info* info)
 {
     mod_t mod;
     mod = zmod_list_get(info->internal_name);
@@ -785,7 +786,7 @@ static int zmod_do_load(mod_t mod,const char* filename)
     if( mod->handle ) {
 	mod->file_name = (char*)calloc(256,1);
 	GetModuleFileName(mod->handle,mod->file_name,255);
-	(void*) mod->callback = /*(long(ZMOD_FUNC *)(int,long))*/ (void*)(GetProcAddress(mod->handle,"zmod_callback"));
+	mod->callback = (zmod_callback_t) (void*)(GetProcAddress(mod->handle,"zmod_callback"));
 	if( !mod->callback ) {
 	    zmod_set_error("DLL: no zmod_callback export in module");
 	    FreeLibrary(mod->handle);
@@ -843,7 +844,7 @@ static int zmod_loaded(mod_t mod)
 #endif
 }
 
-mod_t zmod_load(const char* module_name)
+ZCEXPORT mod_t zmod_load(const char* module_name)
 {
     mod_t mod;
     char *x;
@@ -921,7 +922,7 @@ mod_t zmod_load(const char* module_name)
     Decrease reference count of module,
     if 0 delete it.
 */
-int	zmod_free(mod_t mod)
+ZCEXPORT int	zmod_free(mod_t mod)
 {
     if( mod == NULL )
 	return -1;
@@ -995,7 +996,7 @@ static int zmod_do_free(mod_t mod)
 #endif
 }
 
-int zmod_enum(void (*enum_f)(mod_t))
+ZCEXPORT int zmod_enum(void (*enum_f)(mod_t))
 {
     sbti i,end;
     mod_t x;
@@ -1014,7 +1015,7 @@ int zmod_enum(void (*enum_f)(mod_t))
     sbti_free(end);
     return 0;
 }
-void* zmod_lockfunc(mod_t m,const char* fname)
+ZCEXPORT void* zmod_lockfunc(mod_t m,const char* fname)
 {
     if( !m )
 	return NULL;
@@ -1042,16 +1043,16 @@ void* zmod_lockfunc(mod_t m,const char* fname)
 	return NULL;
     }
 }
-int	zmod_unlockfunc(mod_t mod,void* func)
+ZCEXPORT int	zmod_unlockfunc(mod_t mod,void* func)
 {
     return 0;
 }
-mod_info* zmod_get_modinfo(mod_t mod)
+ZCEXPORT mod_info* zmod_get_modinfo(mod_t mod)
 {
     return mod ? mod->info : 0;
 }
 
-void*	zmod_lock_sym(const char* mod_name,const char* sym_name)
+ZCEXPORT void*	zmod_lock_sym(const char* mod_name,const char* sym_name)
 {
     mod_t mod;
     void* sym;
@@ -1063,7 +1064,7 @@ void*	zmod_lock_sym(const char* mod_name,const char* sym_name)
 	zmod_free(mod);
     return NULL;
 }
-int		zmod_free_sym(const char* mod_name,const char* sym_name)
+ZCEXPORT int		zmod_free_sym(const char* mod_name,const char* sym_name)
 {
     mod_t mod;
 /*    void* sym; */
@@ -1145,7 +1146,7 @@ static char*  zmod_ext_table[] = {
 #endif
     0
 };
-char*	zmod_set_find_path(char* path)
+ZCEXPORT char*	zmod_set_find_path(char* path)
 {
     char* x = zmod_find_path;
     if( path != NULL)
@@ -1153,7 +1154,7 @@ char*	zmod_set_find_path(char* path)
     return x;
 }
 
-int zmod_push_find_path(char* path)
+ZCEXPORT int zmod_push_find_path(char* path)
 {
     if( path == NULL || paths_ptr == countof(paths_stack) )
 	return -1;
@@ -1162,7 +1163,7 @@ int zmod_push_find_path(char* path)
     return 0;
 }
 
-char* zmod_pop_find_path()
+ZCEXPORT char* zmod_pop_find_path()
 {
     if( paths_ptr == 0 ) return NULL;
     return paths_stack[--paths_ptr];

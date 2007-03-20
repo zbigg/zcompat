@@ -87,3 +87,28 @@ void    zc_set_atexit(void (*p)(void (*)(void)))
 {
     _zcompat_atexit = p;
 }
+
+ZCEXPORT void*   zcompat_malloc(size_t size)
+{
+    return malloc(size);
+}
+ZCEXPORT void*   zcompat_calloc(size_t count, size_t size)
+{
+    return calloc(count, size);
+}
+ZCEXPORT void*  zcompat_realloc(void* ptr, size_t new_length)
+{
+    return realloc(ptr, new_length);
+}
+
+ZCEXPORT char*   zcompat_strdup(const char* str)
+{
+    size_t length = strlen(str)+1;
+    char* buffer = (char*) zcompat_malloc(length);
+    memcpy(buffer,str, length);
+    return buffer;
+}
+ZCEXPORT void    zcompat_free(void* mem)
+{
+    free(mem);
+}

@@ -287,14 +287,14 @@ static int create_byte2byte_table(zwchar* src_table,zwchar* dest_table, zchar** 
 
 zcconv_t*   zcconv_new(const char* from, const char* to)
 {
-    zcconv_t* cc = zpio_calloc(1, sizeof( zcconv_t));
+    zcconv_t* cc = zcompat_calloc(1, sizeof( zcconv_t));
     zwchar* src_conv,*dest_conv;
     /*	search for encoding types and conversin tables */
     cc->type_src = get_encoding_type(from,&src_conv);
     cc->type_dest = get_encoding_type(to,&dest_conv);
     
-    cc->enc_src = (char*)zpio_strdup(from);
-    cc->enc_dest = (char*)zpio_strdup(to);
+    cc->enc_src = (char*)zcompat_strdup(from);
+    cc->enc_dest = (char*)zcompat_strdup(to);
     
     if( cc->type_src == cc->type_dest ) {	/* both are the same ! */
 	if( cc->type_src == ZCC_ANSI ) {
@@ -450,7 +450,7 @@ static int create_byte2byte_table(zwchar* src_table,zwchar* dest_table, zchar** 
     zcconv_unicode* u2d_table;
     size_t	    u2d_size;
     if( !res || size == 0 || !src_table || !dest_table ) return 0;
-    *res = d = zpio_calloc(size,sizeof(zchar));
+    *res = d = zcompat_calloc(size,sizeof(zchar));
     u2d_size = create_unicode2byte_table(dest_table,&u2d_table,size);
     for( is = src_table, i = 0; i < size; i++, is++,d++ ) {
 	x = unicode2byte(u2d_table,u2d_size,*is);
@@ -473,7 +473,7 @@ static int create_unicode2byte_table(zwchar* b2u, zcconv_unicode** res, size_t s
     size_t i;
     if( !res ) return -1;
     if( size == 0 ) return 0;
-    r = ri = zpio_calloc(size,sizeof(zcconv_unicode));
+    r = ri = zcompat_calloc(size,sizeof(zcconv_unicode));
     for( i = 0; i < size; i++,ri++ ) {
 	ri->b = i + 128;
 	ri->u = b2u[i];

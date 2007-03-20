@@ -41,11 +41,6 @@ typedef struct ztools_obj_desc ztools_obj_desc;
 extern ztools_obj_desc ztools_int_desc;
 extern ztools_obj_desc ztools_charp_desc;
 
-
-ZCEXPORT  void    ztools_free(void*);
-ZCEXPORT  void*    ztools_malloc(size_t size);
-ZCEXPORT  void*    ztools_calloc(size_t nmemb, size_t size);
-
 /****************************************************/
 /*
     TURN ON/OFF memory debugging 
@@ -285,7 +280,7 @@ int     C##_set_min_size(C* b,size_t size);
 #define     IMPLEMENT_VECTOR(T,C)               \
 C*       C##_new(size_t size)                   \
 {                                               \
-    C* a = (C*)ztools_calloc(1,sizeof(C));      \
+    C* a = (C*)zcompat_calloc(1,sizeof(C));      \
     sbuffer_init(&a->b,size*sizeof(T));         \
     return a;                                   \
 }                                               \
@@ -293,7 +288,7 @@ C*       C##_new(size_t size)                   \
 void    C##_free(C* b)                          \
 {                                               \
     sbuffer_done(&b->b);                        \
-    ztools_free(b);                             \
+    zcompat_free(b);                            \
 }                                               \
                                                 \
 int     C##_set_size(C* b, size_t size)         \

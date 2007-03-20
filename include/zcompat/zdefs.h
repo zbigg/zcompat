@@ -91,10 +91,15 @@
 #define zassert(a) if( a ) { fprintf(stderr,"%s:%i: assertion failed: '%s'\n",__FILE__,__LINE__,#a);exit(1) } else
 #endif
 
-#ifdef ZCOMPAT_MAKINGDLL
-#   define	ZCEXPORT    ZEXPORT
+
+#ifdef ZCOMPAT_DLL
+#  ifdef ZCOMPAT_MAKINGDLL
+#    define	ZCEXPORT    ZEXPORT
+#  else
+#    define	ZCEXPORT    ZIMPORT
+#  endif
 #else
-#   define	ZCEXPORT    ZIMPORT
+#  define	ZCEXPORT
 #endif
 
 #endif /* _zdefs.h */

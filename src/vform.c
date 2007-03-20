@@ -1355,7 +1355,7 @@ static int zsaprintf_flush(zvformatter_buff *vbuff)
     /* _param_ is start of string, thing on which we call realloc,
     free etc */
     register int olen = vbuff->endpos - (char*)vbuff->param + 1;
-    register char* tmp = realloc(vbuff->param, olen * 2);
+    register char* tmp = zcompat_realloc(vbuff->param, olen * 2);
     if( tmp == NULL )
 	return -1;
     vbuff->curpos = tmp + (vbuff->curpos - (char*)vbuff->param);
@@ -1381,7 +1381,7 @@ char* zvsaprintf(char *buf, size_t len, const char* format,va_list ap)
     zvformatter_buff vbuff;
 
     if( buf == NULL || len == 0 ) {
-	buf = malloc(16);
+	buf = zcompat_malloc(16);
 	if( buf == NULL )
 	    return NULL;
 	len = 16;

@@ -453,19 +453,7 @@
 
 #endif /* WINDOWS */
 
-#if defined(ZSYS_WIN)
-    /*
-       __declspec works in BC++ 5 and later, Watcom C++ 11.0 and later as well
-       as VC++ and gcc
-     */
-#    if defined(ZDEV_MSC) || defined(ZDEV_BORLAND) || defined(ZDEV_GCC) || defined(ZDEV_WATCOM)
-#        define ZEXPORT __declspec(dllexport)
-#        define ZIMPORT __declspec(dllimport)
-#    else /* compiler doesn't support __declspec() */
-#        define ZEXPORT
-#        define ZIMPORT
-#    endif
-#elif defined(ZSYS_PM)
+#if defined(ZSYS_PM)
 #    if defined (__WATCOMC__)
 #        define ZEXPORT __declspec(dllexport)
         /*

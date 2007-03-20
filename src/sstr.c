@@ -19,14 +19,11 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "zcompat/zcompat.h"
 #include "zcompat/ztools.h"
 
 #include "ztools_i.h"
-#if 1
-#ifndef strdup
-char* strdup(const char *s);
-#endif
-#endif
 
 int	sstr_resize(sstr* b,size_t new_size);
 int	sstr_set_min_size(sstr* b,size_t min_size);

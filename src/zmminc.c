@@ -17,6 +17,7 @@
 
 #include "zcompat/zcompat.h"
 #include "zcompat/zmm.h"
+#include "zcompat/zpio.h"
 
 #include <errno.h>
 #include <stddef.h>

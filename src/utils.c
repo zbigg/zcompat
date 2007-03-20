@@ -240,7 +240,7 @@ sendfile_failed:
 
 zstream_vtable_t* zpio_vt_dup(const zstream_vtable_t* vt)
 {
-    zstream_vtable_t* n = zpio_calloc(1,sizeof (zstream_vtable_t) );
+    zstream_vtable_t* n = zcompat_calloc(1,sizeof (zstream_vtable_t) );
     if( n == NULL )
 	return NULL;
     memcpy(n,vt,sizeof (zstream_vtable_t));

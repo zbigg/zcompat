@@ -122,7 +122,7 @@ ZSTREAM	zmailopen(const char* server,const char* sender,const char* recipient)
 
     {
 	char *x,*y,*z;
-	y = x = z = zpio_strdup(recipient);
+	y = x = z = zcompat_strdup(recipient);
 
 	while ( (x = strchr(z,',')) != 0 ) {
 	    *x++ = 0;

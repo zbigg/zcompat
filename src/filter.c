@@ -70,7 +70,7 @@ ZSTREAM zfilter_creat(
     int data_size
     )
 {
-    zstream_vtable_t* t = (zstream_vtable_t*) zpio_malloc(sizeof(zstream_vtable_t));
+    zstream_vtable_t* t = (zstream_vtable_t*) zcompat_malloc(sizeof(zstream_vtable_t));
     if( t == NULL )
 	return NULL;
     memcpy(t,&zvt_filter,sizeof(zstream_vtable_t));

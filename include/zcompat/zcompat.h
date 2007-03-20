@@ -40,21 +40,21 @@ typedef zstream_t*	ZSTREAM;
  * #include "ztools.h"
  */
 
-#ifdef ZCOMPAT_MAKINGDLL
-#   define	ZCEXPORT    ZEXPORT
-#else
-#   define	ZCEXPORT    ZIMPORT
-#endif
 
-void	ZCEXPORT    zc_strncpy(char* dest, const char* src, size_t dest_len);
-void	ZCEXPORT    zc_strncat(char* dest, const char* src, size_t dest_len);
+ZCEXPORT void	zc_strncpy(char* dest, const char* src, size_t dest_len);
+ZCEXPORT void	zc_strncat(char* dest, const char* src, size_t dest_len);
 
-int	ZCEXPORT    zc_strcasecmp(const char* a, const char* b);
-int	ZCEXPORT    zc_strncasecmp(const char* a, const char* b,size_t len);
+ZCEXPORT int	zc_strcasecmp(const char* a, const char* b);
+ZCEXPORT int	zc_strncasecmp(const char* a, const char* b,size_t len);
 
-void    ZCEXPORT    zc_atexit(void (*p)(void));
-void    ZCEXPORT    zc_set_atexit(void (*p)(void (*)(void)));
+ZCEXPORT void    zc_atexit(void (*p)(void));
+ZCEXPORT void    zc_set_atexit(void (*p)(void (*)(void)));
 
+ZCEXPORT void*   zcompat_malloc(size_t size);
+ZCEXPORT void*   zcompat_calloc(size_t count, size_t size);
+ZCEXPORT void*   zcompat_realloc(void* ptr, size_t new_length);
+ZCEXPORT char*   zcompat_strdup(const char* str);
+ZCEXPORT void    zcompat_free(void* mem);
 
 #endif /* __zcompat_h_ */
 

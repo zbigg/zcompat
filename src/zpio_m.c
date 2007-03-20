@@ -20,8 +20,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "zcompat/zcompat.h"
 #include "zcompat/zlinkdll.h"
 
-DEF_DLL_ALLOC_VECT_FUNC(zpio)
-
-END_DLL_ALLOC_VECT_FUNC(zpio)
+ZCEXPORT void    zpio_free(void* mem)
+{
+    zcompat_free(mem);
+}

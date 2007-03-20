@@ -85,7 +85,7 @@ static int  resize(zstream_chain* s,unsigned new_size)
 	    }
 	s->tpos = zmin(new_size,s->tpos);
     }
-    tmp = zpio_realloc(s->table, new_size * sizeof(ZSTREAM));
+    tmp = zcompat_realloc(s->table, new_size * sizeof(ZSTREAM));
     if( !tmp ) return -1;
 
     s->table = tmp;
@@ -98,7 +98,7 @@ static int  resize(zstream_chain* s,unsigned new_size)
 
 static ZSTREAM	zchain_open	(ZSTREAM f,const char* name,int mode)
 {
-    zstream_chain* s = zpio_calloc(1,sizeof( zstream_chain ));
+    zstream_chain* s = zcompat_calloc(1,sizeof( zstream_chain ));
     int n = (int)name;
     if( resize(s,n) < 0 )
 	return NULL;

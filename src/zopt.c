@@ -214,7 +214,7 @@ int zc_genusage(struct zopt_rec* records,int no,FILE* output)
 	    fprintf(output," (default=%s)",default_value);
 	fprintf(output,"\n");
     }
-    return NULL;
+    return 0;
 }
 int zc_getopt(struct zopt_rec* rec,int no,
             int* argc,char*** argv,int flags,

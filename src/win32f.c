@@ -139,7 +139,7 @@ ZSTREAM	zwin32file_open	(ZSTREAM f,const char* name,int mode)
 		ZFL_SET(f->flags, ZSF_FILE);
 		break;
 	    }
-	    f->name = zpio_strdup(name ? name : "preset handle");
+	    f->name = zcompat_strdup(name ? name : "preset handle");
 	    return f;
 	}
 }

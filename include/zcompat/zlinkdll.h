@@ -43,43 +43,43 @@ extern char* lib ## _strdup(const char* );	\
 
 
 #define DEF_DLL_ALLOC_VECT_FUNC(lib)		\
-void* (*lib ## _malloc_ptr)(size_t) = 0;	\
-void* (*lib ## _calloc_ptr)(size_t,size_t) = 0;	\
-void* (*lib ## _realloc_ptr)(void*,size_t) = 0;	\
-void  (*lib ## _free_ptr)(void*) = 0;		\
-char* (*lib ## _strdup_ptr)(const char* ) = 0;	\
-void* lib ## _malloc(size_t size)		\
+ZEXPORT void* (*lib ## _malloc_ptr)(size_t) = 0;	\
+ZEXPORT void* (*lib ## _calloc_ptr)(size_t,size_t) = 0;	\
+ZEXPORT void* (*lib ## _realloc_ptr)(void*,size_t) = 0;	\
+ZEXPORT void  (*lib ## _free_ptr)(void*) = 0;		\
+ZEXPORT char* (*lib ## _strdup_ptr)(const char* ) = 0;	\
+ZEXPORT void* lib ## _malloc(size_t size)		\
 {						\
     if( lib ## _malloc_ptr )			\
 	return lib ## _malloc_ptr(size);	\
     return (void*)malloc(size);			\
 }						\
-void* lib ## _calloc(size_t n,size_t size)	\
+ZEXPORT void* lib ## _calloc(size_t n,size_t size)	\
 {						\
     if( lib ## _calloc_ptr )			\
 	return lib ## _calloc_ptr(n,size);	\
     return calloc(n,size);			\
 }						\
-void* lib ## _realloc(void* p,size_t s)		\
+ZEXPORT void* lib ## _realloc(void* p,size_t s)		\
 {						\
     if( lib ## _realloc_ptr )			\
 	return lib ## _realloc_ptr(p,s);	\
     return realloc(p,s);			\
 }						\
-void  lib ## _free(void* p)			\
+ZEXPORT void  lib ## _free(void* p)			\
 {						\
     if( lib ## _free_ptr )			\
 	lib ## _free_ptr(p);			\
     else					\
 	free(p);				\
 }						\
-char* lib ## _strdup(const char* p)		\
+ZEXPORT char* lib ## _strdup(const char* p)		\
 {						\
     if( lib ## _strdup_ptr )			\
 	return lib ## _strdup_ptr(p);		\
     return (char*)strdup(p);			\
 }						\
-DECL_DLL_ALLOC_VECT_FUNC(lib)			\
+ZEXPORT DECL_DLL_ALLOC_VECT_FUNC(lib)			\
 {						\
     lib ## _malloc_ptr = _malloc;		\
     lib ## _calloc_ptr = _calloc;		\
@@ -96,7 +96,7 @@ DECL_DLL_ALLOC_VECT_FUNC(lib)			\
 #define SET_DLL_ALLOC_VECT(lib)		\
     if (1){				\
 	char* strdup(const char*);	\
-	DECL_DLL_ALLOC_VECT_FUNC(lib);	\
+	ZIMPORT DECL_DLL_ALLOC_VECT_FUNC(lib);	\
 	lib ## _zlinkdll_set_alloc(	\
 	    malloc,calloc,realloc,free,	\
 	    strdup);			\
