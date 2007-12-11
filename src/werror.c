@@ -158,6 +158,7 @@ const char* win32_strerror(DWORD er)
     LocalFree(lpMsgBuf);
     return win32_error_buf;
 }
+
 #endif
 
 

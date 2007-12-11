@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <makefile>
     <using module="datafiles"/>
-    <include file="common.bkl"/>
+    <include file="build/bakefile/common.bkl"/>
     <set var="VERSION">0.1.23</set>
     <set var="ZCOMPAT_SOURCES">
         src/ansi.c
@@ -56,7 +56,7 @@
         src/ztools_i.c
     </set>
     
-    <dll id="zcompatdll"  template="compile">
+    <dll id="zcompat"  template="compile">
         <dllname>zcompat$(LIB_DEBUG_SUFFIX)</dllname>
         <so_version>$(VERSION)</so_version>
         <libname>zcompat</libname>
@@ -86,6 +86,15 @@
 	<include cond="FORMAT in ('msvc','msvc6prj')">build/msvc6</include>
 	
     </lib>
+    <template id="test">
+        <include>$(SRCDIR)/include</include>
+        <define cond="FORMAT in ('msvc','msvc6prj')">HAVE_CONFIG_H</define>
+	<include cond="FORMAT in ('msvc','msvc6prj')">build/msvc6</include>
+        <library>zcompat</library>
+    </template>
+    <exe id="testcpp1" template="test">
+        <sources>tests/testcpp1.cpp</sources>
+    </exe>
     <if cond="FORMAT=='autoconf'">       
 	<data-files>
 	    <srcdir>$(SRCDIR)/include/zcompat</srcdir>
@@ -106,6 +115,6 @@
 	    </files>
 	</data-files>
     </if>
-    <fragment format='autoconf' file="common_makefile.rules"/>
+    <fragment format='autoconf' file="build/bakefile/common_makefile.rules"/>
 </makefile>
 

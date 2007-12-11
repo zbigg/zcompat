@@ -98,7 +98,6 @@ AC_SUBST(LDFLAGS)
 AC_CONFIG_FILES([Makefile
                  doc/Makefile
                  doc/docmake.sh
-                 src/Makefile
                  tests/Makefile])
 AC_OUTPUT
 cat << EOF

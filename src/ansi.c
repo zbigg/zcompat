@@ -410,19 +410,23 @@ int	zpioc_fgetpos(ZSTREAM f, fpos_t * pos)
     *pos = (fpos_t)pos;
     return 0;
 }
+
 int	zpioc_fsetpos(ZSTREAM f, const fpos_t * pos)
 {
     zoff_t opos = (zoff_t)*pos;
     return zseek(f,opos, ZSEEK_SET);
 }
+
 int	zpioc_fseek(ZSTREAM f, long offset, int whence)
 {
     return zseek(f,offset,whence);
 }
+
 long	zpioc_ftell(ZSTREAM f)
 {
     return zseek(f,0,ZSEEK_CUR);
 }
+
 void	zpioc_rewind(ZSTREAM f)
 {
     zseek(f,0,ZSEEK_SET);
@@ -431,6 +435,7 @@ void	zpioc_rewind(ZSTREAM f)
 void	zpioc_setbuf(ZSTREAM f, char *buffer)
 {
 }
+
 int	zpioc_setvbuf(ZSTREAM f, char *buf, int mof, size_t size)
 {
     return -1;
@@ -440,26 +445,32 @@ int	zpioc_getc(ZSTREAM f)
 {
     return zfgetc(f);
 }
+
 int	zpioc_getchar(void)
 {
     return zfgetc(zstdin);
 }
+
 int	zpioc_fgetc(ZSTREAM f)
 {
     return zfgetc(f);
 }
+
 int	zpioc_ungetc(int c, ZSTREAM f)
 {
     return zungetc(f,c);
 }
+
 int	zpioc_fputc(int c, ZSTREAM f)
 {
     return zfputc(f,c);
 }
+
 int	zpioc_putc(int c, ZSTREAM f)
 {
     return zfputc(f,c);
 }
+
 int	zpioc_putchar(int c)
 {
     return zfputc(zstdout,c);;
@@ -469,11 +480,13 @@ int	zpioc_puts(const char * s)
 {
     return zputs(s);
 }
+
 char*	zpioc_gets(char *s)
 {
     zfgets(zstdin,s,INT_MAX);
     return s;
 }
+
 char*	zpioc_fgets(char *s, int max, ZSTREAM f)
 {
     zfgets(f,s,max);
@@ -486,28 +499,42 @@ int	zpioc_fputs(const char * s, ZSTREAM f)
 
 int	zpioc_fprintf(ZSTREAM f, const char * fmt, ...)
 {
-    return -1;
+    int result;
+    va_list ap;
+    va_start(ap, fmt);
+    result = zvfprintf(f, fmt, ap);
+    va_end(ap);
+    return result;
 }
 
 int	zpioc_fscanf(ZSTREAM f, const char * fmt, ...)
 {
     return -1;
 }
+
 void	zpioc_perror(const char *message)
 {
- 
+    zperror(message);     
 }
+
 int	zpioc_printf(const char *fmt, ...)
 {
-    return -1;
+    int result;
+    va_list ap;
+    va_start(ap, fmt);
+    result = zvfprintf(zstdout, fmt, ap);
+    va_end(ap);
+    return result;
 }
+
 int	zpioc_vfprintf(ZSTREAM f, const char *fmt, va_list ap)
 {
-    return -1;
+    return zvfprintf(f, fmt, ap);
 }
+
 int	zpioc_vprintf(const char * fmt, va_list ap)
 {
-    return -1;
+    return zvfprintf(zstdout, fmt, ap);
 }
 
 int	zpioc_scanf(const char *fmt, ...)
