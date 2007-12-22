@@ -92,9 +92,11 @@
 	<include cond="FORMAT in ('msvc','msvc6prj')">build/msvc6</include>
         <library>zcompat</library>
     </template>
-    <exe id="testcpp1" template="test">
+<!--
+<exe id="testcpp1" template="test">
         <sources>tests/testcpp1.cpp</sources>
     </exe>
+-->
     <if cond="FORMAT=='autoconf'">       
 	<data-files>
 	    <srcdir>$(SRCDIR)/include/zcompat</srcdir>

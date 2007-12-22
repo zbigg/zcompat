@@ -402,19 +402,33 @@ int	zpioc_fileno(ZSTREAM f)
     return zfctl(f,ZFCTL_GET_READ_DESC,NULL);
 }
 
+// TODO: detect value of FPOS_T_IS_UNKNOWN
+//       for implementations that need it
+#define FPOS_T_IS_UNKNOWN 1
+
 int	zpioc_fgetpos(ZSTREAM f, fpos_t * pos)
 {
+#if FPOS_T_IS_UNKNOWN
+    errno = EBADF;
+    return -1;
+#else
     zoff_t off = zseek(f,0,ZSEEK_CUR);
     if( off == (zoff_t)-1 )
 	return -1;
     *pos = (fpos_t)pos;
     return 0;
+#endif
 }
 
 int	zpioc_fsetpos(ZSTREAM f, const fpos_t * pos)
 {
+#if FPOS_T_IS_UNKNOWN
+    errno = EBADF;
+    return -1;
+#else
     zoff_t opos = (zoff_t)*pos;
     return zseek(f,opos, ZSEEK_SET);
+#endif
 }
 
 int	zpioc_fseek(ZSTREAM f, long offset, int whence)

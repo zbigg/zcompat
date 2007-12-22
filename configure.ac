@@ -84,7 +84,7 @@ AC_CHECK_FUNCS(
     pow rmdir socket strcasecmp strchr strcspn strdup strerror \
     strncasecmp strrchr strstr strtol pthread_mutex_timedlock ])
 
-if test "X$GNUWIN" != "Xno" ; then
+if test "X$GNUWIN" -eq "Xyes" ; then
     LIBS="$LIBS -lwsock32"
     AC_DEFINE_UNQUOTED(HAVE_CREATEFILE,1,[define if have CreateFile system call])
     AC_DEFINE_UNQUOTED(HAVE_LOADLIBRARY,1,[define if have LoadLibrary system call])
@@ -95,11 +95,9 @@ LDFLAGS="$LDFLAGS $LIBS"
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
-AC_CONFIG_FILES([Makefile
-                 doc/Makefile
-                 doc/docmake.sh
-                 tests/Makefile])
-AC_OUTPUT
+AC_OUTPUT(Makefile)
+
+
 cat << EOF
 Configured zcompat $VERSION with options:
 

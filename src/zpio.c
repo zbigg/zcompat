@@ -426,8 +426,8 @@ int     _zread(ZSTREAM f,char* db,int requested_size,int et,void* ep)
         	    break;
 		}
                 requested_size          -= bd_size;
-                (char*) buf->start      += bd_size;
-                (char*) db              += bd_size;
+                buf->start              += bd_size;
+                db                      += bd_size;
                 readed                  += bd_size;
                 f->offset               += bd_size;
 		if( !acc )
@@ -497,22 +497,31 @@ int     _zread(ZSTREAM f,char* db,int requested_size,int et,void* ep)
 		}
 		switch( bd_size ) {
 		case sizeof(char):
-		    *(char* )db = *(char* )buf->start;
+		    {
+			char* a = (char*)db;
+			*a = *(char* )buf->start;
+		    }
 		    break;
                 case sizeof(short):
-		    *(short*)db = *(short*)buf->start;
+		    {
+			short *a = (short*)db;
+			*a  = *(short*)buf->start;
+		    }
 		    break;
                 case sizeof(long):
-		    *(long* )db = *(long* )buf->start;
+		    {
+			long* a = (long*)db;
+			*a = *(long* )buf->start;
+		    }
 		    break;
                 default:
 		    memcpy(db,buf->start,bd_size);
         	    break;
 		}
-                requested_size          -= bd_size;
-                (char*) buf->start      += bd_size;
-                (char*) db              += bd_size;
-                readed                  += bd_size;
+                requested_size  -= bd_size;
+                buf->start      += bd_size;
+                db              += bd_size;
+                readed          += bd_size;
 		if( !acc ) return readed;
             } /* while requested_size > 0 */
             return readed;
