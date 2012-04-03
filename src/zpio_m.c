@@ -23,6 +23,10 @@
 #include "zcompat/zcompat.h"
 #include "zcompat/zlinkdll.h"
 
+ZCEXPORT void    zpio_realloc(void* mem, size_t size)
+{
+    return zcompat_realloc(mem, size);
+}
 ZCEXPORT void    zpio_free(void* mem)
 {
     zcompat_free(mem);
